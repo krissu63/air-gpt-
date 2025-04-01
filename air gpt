@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air GPT - Auricolari AI</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=AdMPccxWqCfZpzMflyPJ-7&currency=EUR"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #111;
+            color: white;
+            margin: 0;
+        }
+        header {
+            padding: 20px;
+            background: #222;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .hero img {
+            width: 250px;
+            margin: 20px auto;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #0f8;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background: #222;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Air GPT</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Prodotti</a></li>
+                <li><a href="#">Chi Siamo</a></li>
+                <li><a href="#">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="auricolari.jpg" alt="Auricolari AI">
+        <h2>Esperienza audio con Intelligenza Artificiale</h2>
+        <p>Comandi vocali, traduzione in tempo reale e qualità audio premium.</p>
+        <div id="paypal-button-container"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Air GPT - Tutti i diritti riservati</p>
+    </footer>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '99.99' // Prezzo in euro
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Pagamento completato da ' + details.payer.name.given_name);
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>
